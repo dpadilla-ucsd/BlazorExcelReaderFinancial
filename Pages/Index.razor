@@ -1,0 +1,30 @@
+﻿@page "/"
+@using BlazorExcelReaderFinancial.Data;
+
+<h1>Blazor Excel Financial Reader</h1>
+
+
+
+<button class="btn btn-primary" @onclick="ReadExcel">
+    Read Excel
+</button>
+
+<DevExpress.Blazor.DxDataGrid Data="@finances" ShowFilterRow="false" PageSize="30" Id="financialsDataGrid">
+    <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData1)" Caption="Col 1"></DevExpress.Blazor.DxDataGridColumn>
+    <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData2)" Caption="Col 2"></DevExpress.Blazor.DxDataGridColumn>
+    <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData3)" Caption="Col 3"></DevExpress.Blazor.DxDataGridColumn>
+    <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData4)" Caption="Col 4"></DevExpress.Blazor.DxDataGridColumn>
+    <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData5)" Caption="Col 5"></DevExpress.Blazor.DxDataGridColumn>
+    <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData6)" Caption="Col 6"></DevExpress.Blazor.DxDataGridColumn>
+</DevExpress.Blazor.DxDataGrid>
+
+
+@code{
+    FinancialData dataPoint = new FinancialData();
+    List<FinancialData> finances = new List<FinancialData>();
+
+    private void ReadExcel()
+    {
+        finances = dataPoint.ReadExcel();
+    }
+}
