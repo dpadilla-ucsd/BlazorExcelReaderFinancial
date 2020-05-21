@@ -18,8 +18,9 @@ namespace BlazorExcelReaderFinancial.Data
         public string CellData6 { get; set; } = "";
 
 
-        public List<FinancialData> ReadExcel()
+        public List<FinancialData> ReadExcel(int tabSelected)
         {
+            System.Diagnostics.Debug.Print("## TAB SELECTED ## " + tabSelected);
             List<FinancialData> finances = new List<FinancialData>();
 
             string FilePath = @"C:\Users\davidp\Documents\FINAL-Fiscal Workbook-Year1-test.xlsx";
@@ -28,12 +29,13 @@ namespace BlazorExcelReaderFinancial.Data
 
             using (ExcelPackage package = new ExcelPackage(existingFile))
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                //ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[tabSelected];
                 System.Diagnostics.Debug.Print("Current worksheet:" + worksheet.Name);
                 int colCount = worksheet.Dimension.End.Column;
                 int rowCount = worksheet.Dimension.End.Row;
-                //FinancialData dataPoint = new FinancialData();
                 System.Diagnostics.Debug.Print("Cols:" + colCount + "  Rows:" + rowCount);
+                
                 for (int row = 1; row <= rowCount; row++)
                 {
                     FinancialData dataPoint = new FinancialData();
@@ -75,7 +77,7 @@ namespace BlazorExcelReaderFinancial.Data
                         }
 
                         System.Diagnostics.Debug.Print("Cell data read:" + cellValue);
-                        //finances.Add(dataPoint);
+                        
                     } // end for rows
                     finances.Add(dataPoint);
                 } // end for col

@@ -8,16 +8,21 @@
     <div class="panel-heading"></div>
     <div class="panel-body">
 
-        <select id="select-file-tabs" name="select-file-tabs" @onclick="GetFileTabs">
+        Select a file to read:
+        <input type="file" id="file-to-read" name="file-to-read" @onchange="GetFileTabs"/>
+        <br />
+        <br />
+        Available worksheets:
+        <select id="select-file-tabs" name="select-file-tabs"  @bind="tabSelected">
             @foreach (var ftab in ftabs)
             {
                 <option value="@ftab.tabNumber">@ftab.tabName</option>
             }
         </select>
-
-        <button class="btn btn-primary" @onclick="ReadExcel">
-            Read Excel
-        </button>
+        <br />
+        @*<button class="btn btn-primary" @onclick="ReadExcel">
+            Read Excel Worksheet
+        </button>*@
     </div>
 </div>
 
@@ -41,14 +46,27 @@
     FinancialData dataPoint = new FinancialData();
     List<FinancialData> finances = new List<FinancialData>();
 
+    private int worksheetNum;
+    public int tabSelected
+    {
+        get { return worksheetNum; }
+        set
+        {
+            worksheetNum = value;
+            //ReadExcel(worksheetNum);
+            finances = dataPoint.ReadExcel(worksheetNum);
+        }
+    }
+
     private void GetFileTabs()
     {
         ftabs = ftab.GetFileTabs();
-        
+
     }
 
     private void ReadExcel()
     {
-        finances = dataPoint.ReadExcel();
+
+        finances = dataPoint.ReadExcel(tabSelected);
     }
 }

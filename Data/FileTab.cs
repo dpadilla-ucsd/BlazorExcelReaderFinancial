@@ -36,7 +36,6 @@ namespace BlazorExcelReaderFinancial.Data
                     fileTabs.Add(fileTab);
                 }
             }
-
             return fileTabs;
         }
     }
