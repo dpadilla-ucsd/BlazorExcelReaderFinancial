@@ -14,11 +14,13 @@
         <br />
         Available worksheets:
         <select id="select-file-tabs" name="select-file-tabs"  @bind="tabSelected">
+            <option value="0">Select a worksheet</option>
             @foreach (var ftab in ftabs)
             {
                 <option value="@ftab.tabNumber">@ftab.tabName</option>
             }
         </select>
+        <br />
         <br />
         @*<button class="btn btn-primary" @onclick="ReadExcel">
             Read Excel Worksheet
@@ -33,8 +35,8 @@
             <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData2)" Caption="Col 2"></DevExpress.Blazor.DxDataGridColumn>
             <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData3)" Caption="Col 3"></DevExpress.Blazor.DxDataGridColumn>
             <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData4)" Caption="Col 4"></DevExpress.Blazor.DxDataGridColumn>
-            <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData5)" Caption="Col 5"></DevExpress.Blazor.DxDataGridColumn>
-            <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData6)" Caption="Col 6"></DevExpress.Blazor.DxDataGridColumn>
+            @*<DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData5)" Caption="Col 5"></DevExpress.Blazor.DxDataGridColumn>
+            <DevExpress.Blazor.DxDataGridColumn Field="@nameof(dataPoint.CellData6)" Caption="Col 6"></DevExpress.Blazor.DxDataGridColumn>*@
         </DevExpress.Blazor.DxDataGrid>
     </div>
 </div>

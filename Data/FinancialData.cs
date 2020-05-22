@@ -14,9 +14,6 @@ namespace BlazorExcelReaderFinancial.Data
         public string CellData2 { get; set; } = "";
         public string CellData3 { get; set; } = "";
         public string CellData4 { get; set; } = "";
-        public string CellData5 { get; set; } = "";
-        public string CellData6 { get; set; } = "";
-
 
         public List<FinancialData> ReadExcel(int tabSelected)
         {
@@ -64,12 +61,6 @@ namespace BlazorExcelReaderFinancial.Data
                                 break;
                             case 4:
                                 dataPoint.CellData4 = cellValue;
-                                break;
-                            case 5:
-                                dataPoint.CellData5 = cellValue;
-                                break;
-                            case 6:
-                                dataPoint.CellData6 = cellValue;
                                 break;
                             default:
                                 System.Diagnostics.Debug.Print("Default case");
